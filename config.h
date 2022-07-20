@@ -29,7 +29,7 @@ static const char *colors[][3]      = {
 /* tagging */
 //tag names (upper left)
 /* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
-static const char *tags[] = { "", "", "", "", "",  "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -38,7 +38,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "mpv",      NULL,       NULL,       1 << 7,       0,           -1 },
 };
 
 /* layout(s) */
@@ -87,6 +88,7 @@ static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", NULL
 static const char *filemanager[] = { "st", "lfub", NULL };
 static const char *mailcmd[] = { "st", "neomutt", NULL };
 static const char *topcmd[]  = { "st", "htop", NULL };
+static const char *qlopcmd[]  = { "st", "-c sudo watch -n1 -c qlop -rt", NULL };
 
 #include "shiftview.c"
 static char *endx[] = { "/bin/sh", "-c", "endx", "externalpipe", NULL };
@@ -95,8 +97,9 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,	                    XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,	            XK_Return, spawn,          SHCMD("urxvt") },
+	{ MODKEY|ShiftMask,	            XK_Return, spawn,          {.v = filemanager } },
 	{ MODKEY|ShiftMask,	            XK_p,	   spawn,		   SHCMD("passmenu") },
+	{ MODKEY,	                    XK_p,	   spawn,		   SHCMD("passmenu") },
 	{ MODKEY|ShiftMask,	            XK_w,	   spawn,		   SHCMD("$BROWSER") },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -129,10 +132,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    focusmon,       {0} },
 	{ MODKEY|ShiftMask,             XK_Tab,    tagmon,         {0} },
 	{ MODKEY|ShiftMask,             XK_Tab,    focusmon,       {0} },
-	{ MODKEY,                       XK_r,      spawn,          {.v = filemanager } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = mailcmd } },
-	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = topcmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = filemanager } },
+	{ MODKEY|ShiftMask,	            XK_r,      spawn,          {.v = topcmd } },
 	{ MODKEY|ShiftMask,			    XK_n,	   spawn,		   SHCMD("st -e nvim -c VimwikiIndex") },
+	{ MODKEY|ShiftMask,			    XK_e,	   spawn,		   SHCMD("st -e nvim -c VimwikiIndex") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
