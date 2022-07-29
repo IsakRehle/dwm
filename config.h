@@ -38,8 +38,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "mpv",      NULL,       NULL,       1 << 7,       0,           -1 },
+	/* { "firefox",  NULL,       NULL,       1 << 8,       0,           -1 }, */
+	/* { "mpv",      NULL,       NULL,       1 << 7,       0,           -1 }, */
 };
 
 /* layout(s) */
@@ -74,21 +74,19 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", "#54487a", "-sf", col_gray4, NULL };
 
-//launches htop
-//static const char *monitor[] = { "/usr/bin/htop", NULL };
-//sets st as the default terminal
+//Defaul terminal
 static const char *termcmd[]  = { "st", NULL };
-//sets urxvt as the default terminal
 //static const char *termcmd[]  = { "urxvt", NULL };
+
 //volume controls
 static const char *upvol[]   = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
 static const char *downvol[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
 
+//shortcuts
 static const char *filemanager[] = { "st", "lfub", NULL };
 static const char *mailcmd[] = { "st", "neomutt", NULL };
 static const char *topcmd[]  = { "st", "htop", NULL };
-static const char *qlopcmd[]  = { "st", "-c sudo watch -n1 -c qlop -rt", NULL };
 
 #include "shiftview.c"
 static char *endx[] = { "/bin/sh", "-c", "endx", "externalpipe", NULL };
@@ -96,9 +94,9 @@ static char *endx[] = { "/bin/sh", "-c", "endx", "externalpipe", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,	            XK_d,	   spawn,		   SHCMD("passmenu") },
 	{ MODKEY,	                    XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,	            XK_Return, spawn,          {.v = filemanager } },
-	{ MODKEY|ShiftMask,	            XK_p,	   spawn,		   SHCMD("passmenu") },
 	{ MODKEY,	                    XK_p,	   spawn,		   SHCMD("passmenu") },
 	{ MODKEY|ShiftMask,	            XK_w,	   spawn,		   SHCMD("$BROWSER") },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -136,7 +134,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,      spawn,          {.v = filemanager } },
 	{ MODKEY|ShiftMask,	            XK_r,      spawn,          {.v = topcmd } },
 	{ MODKEY|ShiftMask,			    XK_n,	   spawn,		   SHCMD("st -e nvim -c VimwikiIndex") },
-	{ MODKEY|ShiftMask,			    XK_e,	   spawn,		   SHCMD("st -e nvim -c VimwikiIndex") },
+	{ MODKEY|ShiftMask,			    XK_e,	   spawn,		   SHCMD("st -e watch -p -t -n .5 'grep MHz /proc/cpuinfo'") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -165,3 +163,4 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
