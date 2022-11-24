@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 /* #define TERMINAL "st" */
 
-/* appearance */
+/* Appearance */
 static const unsigned int borderpx  = 1;        /* border pixel size of windows */
 static const unsigned int gappx     = 5;        /* gaps size between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -9,15 +9,15 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=12", "fontawesome:size=12" };
 static const char dmenufont[]       = "monospace:size=12";
-//background color
+/* Background color */
 static const char col_gray1[]       = "#222222";
-//inactive window border color
+/* Inactive window border color */
 static const char col_gray2[]       = "#444444";
-//font color
-static const char col_gray3[]       = "#bbbbbb";
-//current tag and current window font color
+/*  font color  */
+static const char col_gray3[]       = "#bbbbbb"
+/* Current tag and current window font color */
 static const char col_gray4[]       = "#eeeeee";
-//Top bar second color (blue) and active window border color
+/* Top bar second color (blue) and active window border color */
 static const char col_select[]        = "#f59542";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -42,7 +42,7 @@ static const Rule rules[] = {
 	/* { "mpv",      NULL,       NULL,       1 << 7,       0,           -1 }, */
 };
 
-/* layout(s) */
+/* Layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
@@ -74,16 +74,15 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", "#54487a", "-sf", col_gray4, NULL };
 
-//Defaul terminal
+/* Default terminal */
 static const char *termcmd[]  = { "st", NULL };
-//static const char *termcmd[]  = { "urxvt", NULL };
 
-//volume controls
+/* Volume controls */
 static const char *upvol[]   = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
 static const char *downvol[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 static const char *mutevol[] = { "amixer", "-q", "set", "Master", "toggle", NULL };
 
-//shortcuts
+/* Shortcuts */
 static const char *filemanager[] = { "st", "lfub", NULL };
 static const char *mailcmd[] = { "st", "neomutt", NULL };
 static const char *topcmd[]  = { "st", "htop", NULL };
