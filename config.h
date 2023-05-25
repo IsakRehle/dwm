@@ -107,14 +107,15 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,	        XK_p,	   spawn,	   SHCMD("passmenu") },
-        { MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-        { MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
+        { MODKEY|ShiftMask,             XK_d,      spawn,          {.v = dmenucmd } },
+        { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
         { MODKEY|ShiftMask,	        XK_Return, spawn,          {.v = filemanager } },
-	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
+	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY,                       XK_n,      spawn,          SHCMD("st -e nvim -c VimwikiIndex") },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
-        { MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+        { MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
         { MODKEY,                       XK_q,      killclient,     {0} },
@@ -139,8 +140,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    focusmon,       {0} },
 	{ MODKEY|ShiftMask,             XK_Tab,    tagmon,         {0} },
 	{ MODKEY|ShiftMask,             XK_Tab,    focusmon,       {0} },
-        { MODKEY,                       XK_n,      shiftview,      { .i = +1 } },
-	{ MODKEY,                       XK_b,      shiftview,      { .i = -1 } },
+	{ MODKEY|ShiftMask,             XK_b,      shiftview,      { .i = -1 } },
+        { MODKEY|ShiftMask,             XK_n,      shiftview,      { .i = +1 } },
         { MODKEY,                       XK_z,      setgaps,        {.i = -5 } },
 	{ MODKEY,                       XK_x,      setgaps,        {.i = +5 } },
         { MODKEY,                       XK_equal,  spawn,          {.v = upvol   } },
@@ -152,7 +153,6 @@ static Key keys[] = {
         { MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("st -e watch -p -t -n .5 'grep MHz /proc/cpuinfo'") },
         /* { MODKEY,                       XK_r,      spawn,          {.v = filemanager } }, */
         /* { MODKEY|ShiftMask,             XK_r,      spawn,          {.v = topcmd } }, */
-	{ MODKEY|ShiftMask,             XK_n,      spawn,          SHCMD("st -e nvim -c VimwikiIndex") },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("$BROWSER") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
