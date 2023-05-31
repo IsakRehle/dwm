@@ -46,8 +46,3 @@ Configuration
 -------------
 The configuration of dwm is done by creating a custom config.h
 and (re)compiling the source code.
-
-## Contact
-
-- Isak Rehle <isak@rehle.xyz>
-- [https://rehle.xyz](https://rehle.xyz)
